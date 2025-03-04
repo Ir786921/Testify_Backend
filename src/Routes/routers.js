@@ -31,7 +31,7 @@ const {addTest, getTest} = require("../Controller/customtest.controller.js")
 const {getOrganisationDashboard} = require("../Controller/dashboard.controller.js");
 const {AccessLibrary,MakeChanges} = require("../Controller/library.controller.js")
 const {sharedTests} = require("../Controller/sharedTest.controller.js")
-const { runCode, submitCode } = require("../Controller/codeController");
+
 const {UserResponse} = require("../Controller/userresponse.controller.js")
 const {getAnalysis} = require("../Controller/Analysis.controller.js");
 const {UploadImageController,UploadIdController} = require("../Controller/ImageUpload.js")
@@ -46,8 +46,6 @@ routes.get("/dashboard/:userId", getOrganisationDashboard);
 routes.get("/library", AccessLibrary)
 routes.post("/share",sharedTests)
 routes.get("/user/details",getDetails)
-routes.post("/run", runCode);
-routes.post("/submit", submitCode);
 routes.put("/library/:testId",MakeChanges);
 routes.post("/userresponse",UserResponse)
 routes.get("/getanalysis/:testId",getAnalysis)
