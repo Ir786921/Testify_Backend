@@ -17,7 +17,8 @@ app.use(express.json());
 app.use(
   cors({
     origin: "https://testify-frontend-sage.vercel.app", 
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST" , "PUT"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
