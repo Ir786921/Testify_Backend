@@ -49,10 +49,17 @@ const getUser = async (req, res) => {
     const IsPasswordValid = await bcrypt.compare(Password,user.Password);
 
     if(IsPasswordValid){
-      const token = jwt.sign({_id:user._id},process.env.JWT_SECRET);
+      const token = jwt.sign({_id:user._id},process.env.JWT_SECRET,{
+        expiresIn: "7d",
+      });
       
       
-      res.cookie("token",token)
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: true, 
+        sameSite: "None", 
+      });
+      
       const { Password, ...userData } = user.toObject();
       res.status(200).json({
         message: "Login successful.",
