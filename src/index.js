@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5000", // Update this with your frontend URL
+    origin: "https://testify-frontend-sage.vercel.app", 
     methods: ["GET", "POST"],
     credentials: true,
   })
@@ -44,7 +44,7 @@ const insertDataOnStart = async () => {
   try {
     const dataExists = await Library.countDocuments();
     if (dataExists === 0) {
-      const jsonFilePath = path.join(__dirname, "../src/assest/data.json"); // Path to your JSON file
+      const jsonFilePath = path.join(__dirname, "../src/assest/data.json"); 
       const data = JSON.parse(fs.readFileSync(jsonFilePath, "utf-8"));
       await Library.insertMany(data);
       console.log("Data successfully inserted into MongoDB.");

@@ -5,7 +5,7 @@ let io;
 const initSocket = (server) => {
   io = new Server(server, {
     cors: {
-      origin: "http://localhost:5000",
+      origin: "https://testify-frontend-sage.vercel.app",
       methods: ["GET", "POST"],
       credentials: true,
     },
