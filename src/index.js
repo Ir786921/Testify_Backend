@@ -14,9 +14,20 @@ const server = http.createServer(app); // Create HTTP server for WebSocket
 initSocket(server);
 app.use(cookieParser());
 app.use(express.json());
+const allowedOrigins = [
+ "https://testify-frontend-x333.vercel.app",,
+  
+  "http://localhost:5000"
+];
 app.use(
   cors({
-    origin: "https://testify-frontend-x333.vercel.app", 
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    }, 
     methods: ["GET", "POST" , "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
